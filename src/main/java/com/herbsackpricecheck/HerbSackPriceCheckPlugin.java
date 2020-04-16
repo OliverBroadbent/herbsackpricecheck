@@ -65,7 +65,7 @@ public class HerbSackPriceCheckPlugin extends Plugin
 			herbsInChatMessage.add(chatMessage);
 		}
 
-		if (messageString == "The herb sack is empty.")
+		if (messageString.equals("The herb sack is empty."))
 		{
 			herbsInChatMessage.clear();
 			gettingHerbs = false;
