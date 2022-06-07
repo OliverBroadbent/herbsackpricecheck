@@ -1,8 +1,13 @@
 package com.herbsackpricecheck;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import javax.inject.Inject;
 import net.runelite.api.ChatMessageType;
 import net.runelite.api.Client;
+import static net.runelite.api.ItemID.HERB_SACK;
+import static net.runelite.api.ItemID.OPEN_HERB_SACK;
 import net.runelite.api.events.ChatMessage;
 import net.runelite.api.events.GameTick;
 import net.runelite.api.events.MenuOptionClicked;
@@ -11,15 +16,11 @@ import net.runelite.client.chat.ChatMessageBuilder;
 import net.runelite.client.chat.ChatMessageManager;
 import net.runelite.client.chat.QueuedMessage;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.game.ItemManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.util.QuantityFormatter;
 import net.runelite.http.api.item.ItemPrice;
-import net.runelite.client.game.ItemManager;
-
-import java.util.*;
-
-import static net.runelite.api.ItemID.*;
 
 @PluginDescriptor(
 		name = "Herb Sack Price Check",
@@ -43,7 +44,7 @@ public class HerbSackPriceCheckPlugin extends Plugin
 	@Subscribe
 	private void onMenuOptionClicked(MenuOptionClicked event)
 	{
-		if (!event.getMenuOption().equals("Check") || (event.getId() != OPEN_HERB_SACK && event.getId() != HERB_SACK))
+		if (!event.getMenuOption().equals("Check") || (event.getItemId() != OPEN_HERB_SACK && event.getItemId() != HERB_SACK))
 		{
 			return;
 		}
