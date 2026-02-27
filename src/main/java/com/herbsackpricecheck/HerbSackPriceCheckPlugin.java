@@ -8,6 +8,8 @@ import net.runelite.api.ChatMessageType;
 import net.runelite.api.Client;
 import static net.runelite.api.ItemID.HERB_SACK;
 import static net.runelite.api.ItemID.OPEN_HERB_SACK;
+import static net.runelite.api.ItemID.SILKLINED_HERB_SACK;
+import static net.runelite.api.ItemID.OPEN_SILKLINED_HERB_SACK;
 import net.runelite.api.events.ChatMessage;
 import net.runelite.api.events.GameTick;
 import net.runelite.api.events.MenuOptionClicked;
@@ -44,7 +46,11 @@ public class HerbSackPriceCheckPlugin extends Plugin
 	@Subscribe
 	private void onMenuOptionClicked(MenuOptionClicked event)
 	{
-		if (!event.getMenuOption().equals("Check") || (event.getItemId() != OPEN_HERB_SACK && event.getItemId() != HERB_SACK))
+		if (!event.getMenuOption().equals("Check")
+			|| (event.getItemId() != OPEN_HERB_SACK
+				&& event.getItemId() != HERB_SACK
+				&& event.getItemId() != OPEN_SILKLINED_HERB_SACK
+				&& event.getItemId() != SILKLINED_HERB_SACK))
 		{
 			return;
 		}
